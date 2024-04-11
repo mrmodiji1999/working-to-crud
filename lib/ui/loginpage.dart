@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webkul1/bloc/flutter_bloc.dart';
 import 'package:webkul1/bloc/flutter_event.dart';
 import 'package:webkul1/ui/homepage.dart';
@@ -171,10 +172,16 @@ class _SignInPageState extends State<SignInPage> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 16,
                               vertical: MediaQuery.of(context).size.height * .04),
-                          child: InkWell( onTap: () {
+                          child: InkWell( onTap: () async{
                 if (_formKey.currentState!.validate()) {
                print('Confirm Password: $datamodel');
                context.read<FlutterBloc>().add(userLoginEvent(model: datamodel));
+                }
+                SharedPreferences sp=await SharedPreferences.getInstance();
+                bool islogin = sp.getBool('islogin')??false;
+                if(islogin)
+                {
+                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>PostDataPage()));
                 }
               },
                             child: Container(

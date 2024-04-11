@@ -63,9 +63,9 @@ sp.setBool('isScaffold', !state.isScaffold);
 
   FutureOr<void> apiDataSendEvent(ApiDataSendEvent event, Emitter<FlutterState> emit) {
    
-    final value= PostsRepo.addPost(event.email ,  event.passwd);
+    // final value= PostsRepo.addPost(event.email ,  event.passwd);
    
-    print('i am showing response of api addpost ${value.toString()}');
+    // print('i am showing response of api addpost ${value.toString()}');
     emit(state.copyWith(name:event.email ,passwd: event.passwd));
 
 
@@ -74,8 +74,9 @@ sp.setBool('isScaffold', !state.isScaffold);
   }
 
   FutureOr<void> userloginEvent(userLoginEvent event, Emitter<FlutterState> emit) {
-    PostsRepo.userlogin(event.model);
-    
+   final Islogin =  PostsRepo.updatedata(event.model);
+
+    print(Islogin.toString());
   }
 }
 

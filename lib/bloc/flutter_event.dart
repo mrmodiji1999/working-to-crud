@@ -16,5 +16,6 @@ ApiDataSendEvent({required this.email,required this.passwd});
 }
 class userLoginEvent extends FlutterEvent{
   Map<String ,dynamic> model={};
+  
   userLoginEvent({ required this.model});
 }
